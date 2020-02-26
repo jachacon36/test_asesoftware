@@ -1,9 +1,10 @@
-package com.example.test_asesoftware
+package com.example.test_asesoftware.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.test_asesoftware.R
 
-class MainActivity : AppCompatActivity() {
+class ProductsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
