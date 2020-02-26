@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">test_asesoftware</string>
     <string name="load_products">Cargar productos</string>
+    <string name="price">Precio: %1$s</string>
 </resources>

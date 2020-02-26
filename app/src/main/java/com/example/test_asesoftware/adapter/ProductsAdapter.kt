@@ -1,9 +1,11 @@
 package com.example.test_asesoftware.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_asesoftware.R
@@ -11,8 +13,8 @@ import com.example.test_asesoftware.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product.view.*
 
-class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
-    private lateinit var products: ArrayList<Product>
+class ProductsAdapter(val context: Context) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+    private var products: ArrayList<Product> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.product, parent, false)
@@ -24,10 +26,16 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.count.text = (position+1).toString()
         holder.productName.text = products[position].product
-        holder.productPrice.text = products[position].price
-        //Picasso.get().load(products[position].imagen).into(holder.productImage)
+        holder.productPrice.text = context.getString(R.string.price,products[position].price)
+        Picasso.get().load(products[position].imagen)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .error(R.drawable.ic_launcher_foreground).into(holder.productImage)
         holder.productImage.setOnClickListener {
+
+        }
+        holder.productContainer.setOnClickListener {
 
         }
 
@@ -35,7 +43,6 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     fun createProducts(products: ArrayList<Product>){
         products.let {
-            this.products = arrayListOf()
             this.products.addAll(products)
         }
         notifyDataSetChanged()
@@ -45,6 +52,8 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
         internal val productName: TextView = itemView.productName
         internal val productPrice: TextView = itemView.productPrice
         internal val productImage: ImageView = itemView.productImage
+        internal val count: TextView = itemView.count
+        internal val productContainer: LinearLayout = itemView.productContainer
 
     }
 }

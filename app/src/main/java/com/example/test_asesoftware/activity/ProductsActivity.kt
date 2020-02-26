@@ -2,6 +2,7 @@ package com.example.test_asesoftware.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class ProductsActivity : AppCompatActivity() {
 
     private lateinit var viewModelProducts: ViewModelProducts
-    private val productsAdapter = ProductsAdapter()
+    private val productsAdapter = ProductsAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +22,7 @@ class ProductsActivity : AppCompatActivity() {
         initViewModel()
         createObservers()
         createRecyclerView()
-        getProducts()
-
+        createListeners()
     }
 
     private fun initViewModel(){
@@ -33,15 +33,31 @@ class ProductsActivity : AppCompatActivity() {
         viewModelProducts.products.observe(this, Observer {
             productsAdapter.createProducts(it)
         })
+
+        viewModelProducts.loading.observe(this, Observer {
+            loading(it)
+        })
     }
 
     private fun getProducts(){
         viewModelProducts.getProducts()
+
     }
 
     private fun createRecyclerView(){
         productsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         productsRecyclerView.adapter = productsAdapter
+    }
+
+    private fun createListeners(){
+        loadProducts.setOnClickListener {
+            loadProducts.visibility = View.GONE
+            getProducts()
+        }
+    }
+
+    private fun loading(visibility: Int){
+        loading.visibility = visibility
     }
 
 }
