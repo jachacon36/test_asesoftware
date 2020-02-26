@@ -33,7 +33,7 @@ class ProductsAdapter(private val productsActivity: ProductsActivity) : Recycler
             .placeholder(R.drawable.ic_launcher_foreground)
             .error(R.drawable.ic_launcher_foreground).into(holder.productImage)
         holder.productImage.setOnClickListener {
-
+            productsActivity.createFragmentImg(products[position].imagen)
         }
         holder.productContainer.setOnClickListener {
             productsActivity.createFragment(products[position])

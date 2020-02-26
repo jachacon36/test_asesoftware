@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_asesoftware.R
 import com.example.test_asesoftware.adapter.ProductsAdapter
 import com.example.test_asesoftware.fragment.ProductDetail
+import com.example.test_asesoftware.fragment.ProductImage
 import com.example.test_asesoftware.model.Product
 import com.example.test_asesoftware.viewModel.ViewModelProducts
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +18,7 @@ class ProductsActivity : AppCompatActivity() {
     private lateinit var viewModelProducts: ViewModelProducts
     private val productsAdapter = ProductsAdapter(this)
     private val productDetail by lazy { ProductDetail.newInstance() }
+    private val productImg by lazy { ProductImage.newInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +75,13 @@ class ProductsActivity : AppCompatActivity() {
         productDetail.createFragment(product.product,product.price,
             product.description,product.imagen,productDetail,supportFragmentManager,
             R.id.productContainer )
+    }
+
+    fun createFragmentImg(img: String?) {
+        if (img != null) {
+            productImg.createFragment(img,productImg,supportFragmentManager,
+                R.id.productContainer )
+        }
     }
 
 
