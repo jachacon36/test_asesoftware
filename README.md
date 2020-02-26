@@ -1,6 +1,6 @@
 # Test Asesoftware
 
-This application is an example of how an API is consumed using a clean architecture Kotlin + MVVM + Dagger 2 + RxJava (Observer - Observable).
+This application is an example of how an API is consumed using a clean architecture Kotlin + MVVM + Picasso
 
 ## For this project we used:
 
