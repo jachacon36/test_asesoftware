@@ -10,10 +10,12 @@ class ViewModelProducts : ViewModel() {
 
     val products: MutableLiveData<ArrayList<Product>> = MutableLiveData()
     val loading: MutableLiveData<Int> = MutableLiveData()
+    val button: MutableLiveData<Int> = MutableLiveData()
     private lateinit var productList: ArrayList<Product>
 
     fun getProducts(){
         loading.value = View.VISIBLE
+        button.value = View.GONE
         productList = arrayListOf()
         for (i in 1..40){
             productList.add(createProductRandom(i))
