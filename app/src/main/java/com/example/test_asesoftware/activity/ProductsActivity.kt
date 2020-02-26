@@ -15,6 +15,9 @@ class ProductsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViewModel()
+        createObservers()
+        getProducts()
+
     }
 
     private fun initViewModel(){
@@ -25,6 +28,10 @@ class ProductsActivity : AppCompatActivity() {
         viewModelProducts.products.observe(this, Observer {
 
         })
+    }
+
+    private fun getProducts(){
+        viewModelProducts.getProducts()
     }
 
 }
