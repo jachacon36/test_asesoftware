@@ -2,6 +2,7 @@ package com.example.test_asesoftware.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.test_asesoftware.adapter.ProductsAdapter
 import com.example.test_asesoftware.model.Product
 
 class ViewModelProducts : ViewModel() {
@@ -12,7 +13,7 @@ class ViewModelProducts : ViewModel() {
     fun getProducts(){
         productList = arrayListOf()
         for (i in 1..40){
-            productList.add(Product("","",""))
+            productList.add(Product("Lavadora","1000","lavadora de dos tambores", ""))
         }
         products.value = productList
     }

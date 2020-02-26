@@ -26,7 +26,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.productName.text = products[position].product
         holder.productPrice.text = products[position].price
-        Picasso.get().load(products[position].imagen).into(holder.productImage)
+        //Picasso.get().load(products[position].imagen).into(holder.productImage)
         holder.productImage.setOnClickListener {
 
         }
@@ -35,6 +35,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     fun createProducts(products: ArrayList<Product>){
         products.let {
+            this.products = arrayListOf()
             this.products.addAll(products)
         }
         notifyDataSetChanged()
